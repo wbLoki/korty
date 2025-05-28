@@ -1,4 +1,3 @@
-import { Colors } from '@/constants/Colors';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import React from 'react';
 import {
@@ -9,6 +8,7 @@ import {
     TouchableOpacity,
     ViewStyle,
 } from 'react-native';
+import { Colors } from '../constants/Colors';
 
 type ButtonVariant = 'primary' | 'secondary';
 
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
     },
     text: {
         fontSize: 16,
