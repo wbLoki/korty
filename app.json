@@ -14,7 +14,7 @@
                 "aps-environment": "development"
             },
             "googleServicesFile": "./GoogleService-Info.plist",
-            "bundleIdentifier": "com.wbloki.korty"
+            "bundleIdentifier": "com.wbLoki.korty"
         },
         "android": {
             "adaptiveIcon": {
@@ -23,7 +23,7 @@
             },
             "edgeToEdgeEnabled": true,
             "googleServicesFile": "./google-services.json",
-            "package": "com.wbloki.korty"
+            "package": "com.wbLoki.korty"
         },
         "web": {
             "bundler": "metro",
