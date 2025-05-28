@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>618158284103-q7gvtirgj7dnua9uqdfhcg0mqhsv8kr5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.618158284103-q7gvtirgj7dnua9uqdfhcg0mqhsv8kr5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC8rd5byO_NmUViJOwm_GFT0MDA6iWvMKo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>618158284103</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.wbLoki.korty</string>
+	<key>PROJECT_ID</key>
+	<string>korty-loki</string>
+	<key>STORAGE_BUCKET</key>
+	<string>korty-loki.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:618158284103:ios:75673c9305ed7b85560062</string>
+</dict>
+</plist>

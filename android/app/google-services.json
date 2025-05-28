@@ -1,0 +1,46 @@
+{
+	"project_info": {
+		"project_number": "618158284103",
+		"project_id": "korty-loki",
+		"storage_bucket": "korty-loki.firebasestorage.app"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:618158284103:android:0a426cf2377e1197560062",
+				"android_client_info": {
+					"package_name": "com.wbLoki.korty"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "618158284103-2pp5uapcff5vjrp5f76qrijb0789heot.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": "AIzaSyAFNEa2S_VfYxKJ1oPnHTZJ0bk0NTcyKig"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": [
+						{
+							"client_id": "618158284103-2pp5uapcff5vjrp5f76qrijb0789heot.apps.googleusercontent.com",
+							"client_type": 3
+						},
+						{
+							"client_id": "618158284103-q7gvtirgj7dnua9uqdfhcg0mqhsv8kr5.apps.googleusercontent.com",
+							"client_type": 2,
+							"ios_info": {
+								"bundle_id": "com.wbLoki.korty"
+							}
+						}
+					]
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
+}
