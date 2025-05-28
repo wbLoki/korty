@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
-import { useState } from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { useEffect, useState } from 'react';
 import {
     Button,
     KeyboardAvoidingView,
@@ -11,6 +12,14 @@ import {
 export default function Index() {
     const [user, setUser] = useState({ email: '', password: '' });
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        GoogleSignin.configure({
+            iosClientId: "1096567925493-nrsfralu5tdqcg2j480g2hh870i4bjdg.apps.googleusercontent.com",
+            webClientId: "1096567925493-ofl8psaj4pvbhvg1e4cv8a7sqbehkl22.apps.googleusercontent.com",
+            profileImageSize: 150,
+        })
+    })
 
     const signUp = async () => {
         setLoading(true);
