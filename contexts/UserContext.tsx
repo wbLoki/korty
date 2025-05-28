@@ -9,6 +9,7 @@ import {
     isErrorWithCode,
     statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { useRouter } from 'expo-router';
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 
 export type User = {
@@ -35,6 +36,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [initializing, setInitializing] = useState(true);
 
+    const router = useRouter();
+
     function handleAuthStateChanged(user: User | null) {
         setUser(user);
         if (initializing) setInitializing(false);
@@ -56,27 +59,28 @@ export function UserProvider({ children }: { children: ReactNode }) {
             });
 
             const signInResult = await GoogleSignin.signIn();
-            console.log('signInResult', signInResult.data?.user);
 
             const googleCredential = GoogleAuthProvider.credential(
                 signInResult.data?.idToken
             );
             await signInWithCredential(getAuth(), googleCredential);
+            setUser(signInResult.data?.user ?? null);
+            router.dismissAll();
+            router.replace('/home');
         } catch (error) {
-            console.error('Google Sign-In Error in context:', error);
             if (isErrorWithCode(error)) {
                 switch (error.code) {
                     case statusCodes.SIGN_IN_CANCELLED:
-                        return 'Sign In Cancelled';
+                        throw Error('Sign In Cancelled');
                     case statusCodes.IN_PROGRESS:
-                        return 'Sign In is already in progress';
+                        throw Error('Sign In is already in progress');
                     case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-                        return 'Play Services Not Available or Outdated';
+                        throw Error('Play Services Not Available or Outdated');
                     default:
-                        return 'Something went wrong';
+                        throw Error('Something went wrong');
                 }
             }
-            return 'Unknown error occurred';
+            throw Error('Unknown error occurred');
         }
     };
 
@@ -84,6 +88,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
         try {
             await GoogleSignin.signOut();
             await getAuth().signOut();
+            setUser(null);
+            router.replace('/');
         } catch (error) {
             console.error('Logout Error:', error);
         }
