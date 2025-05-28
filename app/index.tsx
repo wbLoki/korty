@@ -8,9 +8,9 @@ export default function Index() {
     useEffect(() => {
         GoogleSignin.configure({
             iosClientId:
-                '1096567925493-nrsfralu5tdqcg2j480g2hh870i4bjdg.apps.googleusercontent.com',
+                '618158284103-q7gvtirgj7dnua9uqdfhcg0mqhsv8kr5.apps.googleusercontent.com',
             webClientId:
-                '1096567925493-ofl8psaj4pvbhvg1e4cv8a7sqbehkl22.apps.googleusercontent.com',
+                '618158284103-2pp5uapcff5vjrp5f76qrijb0789heot.apps.googleusercontent.com',
             profileImageSize: 150,
         });
     });
