@@ -21,45 +21,10 @@ const Login = () => {
             const response = await login();
             showMessage(response ?? '');
         } catch (error) {
-            console.error('Google Sign-In Error:', error);
+            showMessage(String(error));
         } finally {
             setLoading(false);
         }
-
-        // try {
-        //     setLoading(true);
-        //     await GoogleSignin.hasPlayServices();
-        //     const response = await GoogleSignin.signIn();
-        //     if (isSuccessResponse(response)) {
-        //         const { idToken, user } = response.data;
-        //         const { name, email, photo } = user;
-        //     }
-        // } catch (error) {
-        //     if (
-        //         isErrorWithCode(error) &&
-        //         error.code === statusCodes.SIGN_IN_CANCELLED
-        //     ) {
-        //         showMessage('Sign In Cancelled');
-        //     } else if (
-        //         isErrorWithCode(
-        //             isErrorWithCode(error) &&
-        //                 error.code === statusCodes.IN_PROGRESS
-        //         )
-        //     ) {
-        //         showMessage('Sign In is already in progress');
-        //     } else if (
-        //         isErrorWithCode(
-        //             isErrorWithCode(error) &&
-        //                 error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE
-        //         )
-        //     ) {
-        //         showMessage('Play Services Not Available or Outdated');
-        //     } else {
-        //         showMessage('Something went wrong');
-        //     }
-        // } finally {
-        //     setLoading(false);
-        // }
     };
 
     return (
@@ -75,24 +40,6 @@ const Login = () => {
                 disabled={loading}
             />
             <ThemedButton variant='primary' text='Login' />
-            {/* <KeyboardAvoidingView behavior='padding'>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Email'
-                    value={user.email}
-                    onChangeText={(email) => setUser({ ...user, email })}
-                    keyboardType='email-address'
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Password'
-                    value={user.password}
-                    onChangeText={(password) => setUser({ ...user, password })}
-                    secureTextEntry
-                />
-                <Button title='Sign Up' onPress={signUp} />
-                <Button title='Login' onPress={signIn} />
-            </KeyboardAvoidingView> */}
         </ThemedView>
     );
 };
