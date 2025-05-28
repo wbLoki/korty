@@ -1,4 +1,4 @@
-import { Spacer, ThemedButton, ThemedText, ThemedView } from '@/components';
+import { Spacer, ThemedText, ThemedView } from '@/components';
 import { useUser } from '@/hooks/useUser';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import React, { useState } from 'react';
@@ -39,7 +39,6 @@ const Login = () => {
                 onPress={handleGoogleSignIn}
                 disabled={loading}
             />
-            <ThemedButton variant='primary' text='Login' />
         </ThemedView>
     );
 };
