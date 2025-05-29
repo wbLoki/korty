@@ -4,6 +4,7 @@ import {
     onAuthStateChanged,
     signInWithCredential,
 } from '@react-native-firebase/auth';
+import { doc, getFirestore, setDoc } from '@react-native-firebase/firestore';
 import {
     GoogleSignin,
     isErrorWithCode,
@@ -22,10 +23,19 @@ export type User = {
 };
 
 type UserContextType = {
-    user: User | null;
+    user: User;
     login: () => Promise<void | string>;
     logout: () => Promise<void>;
     initializing: boolean;
+};
+
+const EMPTY_USER: User = {
+    id: '',
+    name: '',
+    email: '',
+    photo: '',
+    familyName: '',
+    givenName: '',
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -33,13 +43,17 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export function UserProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User>(EMPTY_USER);
     const [initializing, setInitializing] = useState(true);
 
     const router = useRouter();
 
     function handleAuthStateChanged(user: User | null) {
-        setUser(user);
+        console.log(user);
+        if (user) {
+            setUser(user);
+            console.log('user been set to: ', user);
+        }
         if (initializing) setInitializing(false);
     }
 
@@ -50,7 +64,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         );
 
         return unsubscribe;
-    }, [initializing]);
+    }, []);
 
     const login = async () => {
         try {
@@ -59,12 +73,34 @@ export function UserProvider({ children }: { children: ReactNode }) {
             });
 
             const signInResult = await GoogleSignin.signIn();
+            const googleUser = signInResult.data?.user;
 
             const googleCredential = GoogleAuthProvider.credential(
                 signInResult.data?.idToken
             );
-            await signInWithCredential(getAuth(), googleCredential);
-            setUser(signInResult.data?.user ?? null);
+            const userCredential = await signInWithCredential(
+                getAuth(),
+                googleCredential
+            );
+            if (googleUser) {
+                const db = getFirestore();
+                const userDocRef = doc(db, 'users', userCredential.user.uid);
+
+                await setDoc(
+                    userDocRef,
+                    {
+                        id: googleUser.id,
+                        name: googleUser.name,
+                        email: googleUser.email,
+                        photo: googleUser.photo,
+                        givenName: googleUser.givenName,
+                        familyName: googleUser.familyName,
+                    },
+                    { merge: true }
+                );
+
+                setUser(googleUser);
+            }
             router.dismissAll();
             router.replace('/home');
         } catch (error) {
@@ -88,7 +124,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         try {
             await GoogleSignin.signOut();
             await getAuth().signOut();
-            setUser(null);
+            setUser(EMPTY_USER);
             router.replace('/');
         } catch (error) {
             console.error('Logout Error:', error);
