@@ -1,11 +1,20 @@
-import { Spacer, ThemedText, ThemedView } from '@/components';
+import { Spacer, ThemedButton, ThemedText, ThemedView } from '@/components';
+import { useUser } from '@/hooks/useUser';
 import { StyleSheet } from 'react-native';
 
 export default function Home() {
+    const { logout, user, initializing } = useUser();
+    const { email, givenName, photo } = user;
     return (
         <ThemedView style={styles.container}>
-            <ThemedText type='title'>This is Profile</ThemedText>
+            <ThemedText type='title'>Hello, {givenName}!</ThemedText>
             <Spacer height={2} />
+            <ThemedButton
+                fullWidth
+                text='Logout'
+                icon='exit-outline'
+                onPress={logout}
+            />
         </ThemedView>
     );
 }

@@ -1,4 +1,5 @@
 import { Spacer, ThemedText, ThemedView } from '@/components';
+import GuestOnly from '@/components/auth/GuestOnly';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
@@ -8,21 +9,23 @@ export default function Index() {
     useEffect(() => {
         GoogleSignin.configure({
             iosClientId:
-                '1096567925493-nrsfralu5tdqcg2j480g2hh870i4bjdg.apps.googleusercontent.com',
+                '618158284103-q7gvtirgj7dnua9uqdfhcg0mqhsv8kr5.apps.googleusercontent.com',
             webClientId:
-                '1096567925493-ofl8psaj4pvbhvg1e4cv8a7sqbehkl22.apps.googleusercontent.com',
+                '618158284103-2pp5uapcff5vjrp5f76qrijb0789heot.apps.googleusercontent.com',
             profileImageSize: 150,
         });
     });
 
     return (
-        <ThemedView style={styles.container}>
-            <ThemedText type='title'>Welcome to my App</ThemedText>
-            <Spacer height={2} />
-            <Link href='/login'>
-                <ThemedText type='link'>Go to Login Page</ThemedText>
-            </Link>
-        </ThemedView>
+        <GuestOnly>
+            <ThemedView style={styles.container}>
+                <ThemedText type='title'>Welcome to my App</ThemedText>
+                <Spacer height={2} />
+                <Link href='/login'>
+                    <ThemedText type='link'>Go to Login Page</ThemedText>
+                </Link>
+            </ThemedView>
+        </GuestOnly>
     );
 }
 
