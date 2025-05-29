@@ -1,10 +1,17 @@
 import {
+    FirebaseAuthTypes,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
     signInWithCredential,
 } from '@react-native-firebase/auth';
-import { doc, getFirestore, setDoc } from '@react-native-firebase/firestore';
+import {
+    doc,
+    FirebaseFirestoreTypes,
+    getDoc,
+    getFirestore,
+    setDoc,
+} from '@react-native-firebase/firestore';
 import {
     GoogleSignin,
     isErrorWithCode,
@@ -48,15 +55,46 @@ export function UserProvider({ children }: { children: ReactNode }) {
     const [initializing, setInitializing] = useState(true);
     const [authenticated, setAuthenticated] = useState(false);
 
+    const db = getFirestore();
     const router = useRouter();
 
-    function handleAuthStateChanged(user: User | null) {
-        console.log(user);
+    async function handleAuthStateChanged(user: FirebaseAuthTypes.User | null) {
         if (user) {
-            setUser(user);
-            setAuthenticated(true);
-            console.log('user been set to: ', user);
+            try {
+                const userDocRef = doc(db, 'users', user.uid);
+                const response = await getDoc(userDocRef);
+
+                if (response.exists()) {
+                    const userData =
+                        response.data() as FirebaseFirestoreTypes.DocumentData;
+
+                    setUser({
+                        id: userData?.id ?? '',
+                        name: userData?.name ?? '',
+                        email: userData?.email ?? '',
+                        photo: userData?.photo ?? '',
+                        familyName: userData?.familyName ?? '',
+                        givenName: userData?.givenName ?? '',
+                    });
+
+                    setAuthenticated(true);
+                } else {
+                    console.warn('User document not found in Firestore.');
+
+                    setUser({
+                        id: user.uid,
+                        name: '',
+                        email: user.email ?? '',
+                        photo: '',
+                        familyName: '',
+                        givenName: '',
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
         }
+
         if (initializing) setInitializing(false);
     }
 
@@ -86,7 +124,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
                 googleCredential
             );
             if (googleUser) {
-                const db = getFirestore();
                 const userDocRef = doc(db, 'users', userCredential.user.uid);
 
                 await setDoc(
