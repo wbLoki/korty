@@ -3,7 +3,7 @@ import { useUser } from '@/hooks/useUser';
 import { StyleSheet } from 'react-native';
 
 export default function Home() {
-    const { logout, user } = useUser();
+    const { logout, user, initializing } = useUser();
     const { email, givenName, photo } = user;
     return (
         <ThemedView style={styles.container}>
