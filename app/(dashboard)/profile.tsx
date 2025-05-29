@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export default function Home() {
     const { logout, user } = useUser();
-    const { email, givenName, photo } = user ?? {};
+    const { email, givenName, photo } = user;
     return (
         <ThemedView style={styles.container}>
             <ThemedText type='title'>Hello, {givenName}!</ThemedText>
