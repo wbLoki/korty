@@ -1,4 +1,5 @@
 import { Spacer, ThemedText, ThemedView } from '@/components';
+import GuestOnly from '@/components/auth/GuestOnly';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Link } from 'expo-router';
 import { useEffect } from 'react';
@@ -16,13 +17,15 @@ export default function Index() {
     });
 
     return (
-        <ThemedView style={styles.container}>
-            <ThemedText type='title'>Welcome to my App</ThemedText>
-            <Spacer height={2} />
-            <Link href='/login'>
-                <ThemedText type='link'>Go to Login Page</ThemedText>
-            </Link>
-        </ThemedView>
+        <GuestOnly>
+            <ThemedView style={styles.container}>
+                <ThemedText type='title'>Welcome to my App</ThemedText>
+                <Spacer height={2} />
+                <Link href='/login'>
+                    <ThemedText type='link'>Go to Login Page</ThemedText>
+                </Link>
+            </ThemedView>
+        </GuestOnly>
     );
 }
 
