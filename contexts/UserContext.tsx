@@ -26,6 +26,7 @@ type UserContextType = {
     user: User;
     login: () => Promise<void | string>;
     logout: () => Promise<void>;
+    authenticated: boolean;
     initializing: boolean;
 };
 
@@ -45,6 +46,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 export function UserProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User>(EMPTY_USER);
     const [initializing, setInitializing] = useState(true);
+    const [authenticated, setAuthenticated] = useState(false);
 
     const router = useRouter();
 
@@ -52,6 +54,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         console.log(user);
         if (user) {
             setUser(user);
+            setAuthenticated(true);
             console.log('user been set to: ', user);
         }
         if (initializing) setInitializing(false);
@@ -98,7 +101,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
                     },
                     { merge: true }
                 );
-
+                setAuthenticated(true);
                 setUser(googleUser);
             }
             router.dismissAll();
@@ -125,6 +128,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
             await GoogleSignin.signOut();
             await getAuth().signOut();
             setUser(EMPTY_USER);
+            setAuthenticated(false);
             router.replace('/');
         } catch (error) {
             console.error('Logout Error:', error);
@@ -132,7 +136,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, login, logout, initializing }}>
+        <UserContext.Provider
+            value={{ user, login, logout, authenticated, initializing }}
+        >
             {children}
         </UserContext.Provider>
     );
