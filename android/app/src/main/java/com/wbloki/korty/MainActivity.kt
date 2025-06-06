@@ -1,4 +1,4 @@
-package com.wbloki.korty
+package com.wbLoki.korty
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

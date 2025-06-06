@@ -1,4 +1,4 @@
-package com.wbloki.korty
+package com.wbLoki.korty
 
 import android.app.Application
 import android.content.res.Configuration
