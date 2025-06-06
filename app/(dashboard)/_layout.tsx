@@ -18,6 +18,8 @@ const DashboardLayout = () => {
                     },
                     tabBarActiveTintColor: active,
                     tabBarInactiveTintColor: inActive,
+                    tabBarLabelPosition: 'beside-icon',
+                    tabBarItemStyle: { borderRadius: 20 },
                 }}
             >
                 <Tabs.Screen
