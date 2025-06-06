@@ -1,5 +1,5 @@
 import { Spacer, ThemedButton, ThemedCalendar, ThemedText, ThemedView } from '@/components';
-import ThemedTextInput from '@/components/ThemedTextInput';
+import ThemedTextInput from '@/components/ui/ThemedTextInput';
 import { t } from '@/i18n/i18n';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';

@@ -1,10 +1,10 @@
-import { HapticTab } from './HapticTab';
-import Spacer from './Spacer';
-import ThemedButton from './ThemedButton';
-import ThemedCalendar from './ThemedCalendar';
-import ThemedLoader from './ThemedLoader';
-import ThemedText from './ThemedText';
-import ThemedView from './ThemedView';
+import { HapticTab } from './ui/HapticTab';
+import Spacer from './ui/Spacer';
+import ThemedButton from './ui/ThemedButton';
+import ThemedCalendar from './ui/ThemedCalendar';
+import ThemedLoader from './ui/ThemedLoader';
+import ThemedText from './ui/ThemedText';
+import ThemedView from './ui/ThemedView';
 
 export {
     HapticTab,

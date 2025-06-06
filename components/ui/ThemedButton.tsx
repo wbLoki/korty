@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     ViewStyle,
 } from 'react-native';
-import { Colors } from '../constants/Colors';
+import { Colors } from '../../constants/Colors';
 
 type ButtonVariant = 'primary' | 'secondary';
 type IconName = ComponentProps<typeof Ionicons>['name'];

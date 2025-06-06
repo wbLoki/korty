@@ -1,7 +1,7 @@
 import { useUser } from '@/hooks/useUser';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import ThemedLoader from '../ThemedLoader';
+import ThemedLoader from '../ui/ThemedLoader';
 
 const GuestOnly = ({ children }: { children: React.ReactNode }) => {
     const { authenticated, initializing } = useUser();
