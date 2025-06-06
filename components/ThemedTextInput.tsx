@@ -18,7 +18,8 @@ export default ThemedTextInput;
 
 const styles = StyleSheet.create({
     input: {
-        padding: 20,
+        padding: 0,
         borderRadius: 6,
+        fontSize: 16,
     },
 });
