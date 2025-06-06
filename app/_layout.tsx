@@ -1,6 +1,7 @@
 import { UserProvider } from '@/contexts/UserContext';
 import { Stack } from 'expo-router';
 import { useColorScheme } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Colors } from '../constants/Colors';
 
 export default function RootLayout() {
@@ -9,6 +10,7 @@ export default function RootLayout() {
 
     return (
         <UserProvider>
+            <SafeAreaProvider>
             <Stack
                 screenOptions={{
                     headerStyle: { backgroundColor: theme.navBar },
@@ -22,6 +24,7 @@ export default function RootLayout() {
                 />
                 <Stack.Screen name='index' options={{ title: 'Welcome' }} />
             </Stack>
+            </SafeAreaProvider>
         </UserProvider>
     );
 }
