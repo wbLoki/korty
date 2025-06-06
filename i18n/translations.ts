@@ -1,7 +1,13 @@
+import { DotNestedKeys } from "@/types/Translations";
+
+
 export const translations = {
     en: {
         hello: 'This is Home',
-        goodbye: 'Goodbye',
+        search: {
+            title: 'welcome to search page',
+            subtitle: 'You can search for games here.'
+        },
     },
     fr: {
         hello: 'Bonjour',
@@ -9,4 +15,4 @@ export const translations = {
     },
 };
 
-export type TranslationKey = keyof typeof translations.en;
+export type TranslationKey = DotNestedKeys<typeof translations.en>;
