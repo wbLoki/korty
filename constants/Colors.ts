@@ -22,6 +22,9 @@ export const Colors = {
 
         buttonPrimary: '#00A8E8',
         buttonSecondary: '#2EC4B6',
+
+        tagBackground: '#F1F3F5',
+        tagText: '#495057',
     },
 
     dark: {
@@ -44,7 +47,12 @@ export const Colors = {
         tabBarActive: '#00A8E8',
         tabBarInactive: '#6C757D',
         shadow: 'rgba(0,0,0,0.5)',
+
         buttonPrimary: '#00A8E8',
         buttonSecondary: '#2EC4B6',
+
+        tagBackground: '#2A2A2A',
+        tagText: '#CED4DA',
     },
 };
+
