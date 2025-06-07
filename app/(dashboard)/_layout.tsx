@@ -14,10 +14,11 @@ const DashboardLayout = () => {
                     tabBarStyle: {
                         backgroundColor: useThemeColor('navBar'),
                         paddingTop: 10,
-                        height: 90,
                     },
                     tabBarActiveTintColor: active,
                     tabBarInactiveTintColor: inActive,
+                    tabBarLabelPosition: 'beside-icon',
+                    tabBarItemStyle: { borderRadius: 20 },
                 }}
             >
                 <Tabs.Screen
@@ -65,3 +66,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+
