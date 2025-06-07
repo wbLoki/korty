@@ -6,7 +6,8 @@ export const translations = {
         hello: 'This is Home',
         search: {
             title: 'welcome to search page',
-            subtitle: 'You can search for games here.'
+            subtitle: 'You can search for games here.',
+            noGames: 'No games found',
         },
     },
     fr: {
