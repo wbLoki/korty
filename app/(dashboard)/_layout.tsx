@@ -14,7 +14,6 @@ const DashboardLayout = () => {
                     tabBarStyle: {
                         backgroundColor: useThemeColor('navBar'),
                         paddingTop: 10,
-                        height: 90,
                     },
                     tabBarActiveTintColor: active,
                     tabBarInactiveTintColor: inActive,
@@ -67,3 +66,4 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
+
