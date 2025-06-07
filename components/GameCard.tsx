@@ -2,15 +2,22 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { GameCardProps } from '@/types';
 import { Image } from 'expo-image';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import Tag from './ui/Tag';
 import ThemedText from './ui/ThemedText';
 import ThemedView from './ui/ThemedView';
 
-const GameCard = ({ title }: GameCardProps) => {
+const GameCard = (props: GameCardProps) => {
     const backgroundColor = useThemeColor('surface');
     const imagebg = useThemeColor('background');
     const borderColor = useThemeColor('border');
+    const { title, date, image, desc, tags, price, currentPlayer, maxPlayer } =
+        props;
+    const time = date.toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+    });
+
     return (
         <ThemedView
             style={[styles.container, { backgroundColor, borderColor }]}
@@ -20,33 +27,65 @@ const GameCard = ({ title }: GameCardProps) => {
                     {title}
                 </ThemedText>
             </View>
-            <View>
-                <ThemedText style={{ fontWeight: '300', fontSize: 12 }}>
-                    8:00 AM
+            <View
+                style={[
+                    styles.content,
+                    {
+                        gap: 8,
+                    },
+                ]}
+            >
+                <ThemedText style={{ fontWeight: '300', fontSize: 14 }}>
+                    {time}
+                </ThemedText>
+                <ThemedText style={{ fontWeight: '500', fontSize: 16 }}>
+                    Current Players: {currentPlayer}/{maxPlayer}
                 </ThemedText>
             </View>
             <View style={styles.content}>
-                <View style={{ flexDirection: 'row', gap: 8 }}>
+                <View
+                    style={[
+                        styles.content,
+                        {
+                            gap: 12,
+                        },
+                    ]}
+                >
                     <View style={{ flexShrink: 1, aspectRatio: 1 }}>
                         <Image
                             style={[{ backgroundColor: imagebg }, styles.image]}
-                            source={''}
+                            source={image}
                             placeholder={'user image'}
                             contentFit='contain'
                         />
                     </View>
-                    <ThemedText style={{ fontWeight: '400', fontSize: 18 }}>
-                        7 a side by @Chippo
+                    <ThemedText
+                        style={{
+                            flexShrink: 1,
+                        }}
+                        numberOfLines={1}
+                    >
+                        {desc}
                     </ThemedText>
                 </View>
-                <Tag text='14/14' />
             </View>
             <View style={[styles.footer, { borderColor }]}>
-                <View style={{ flexDirection: 'row', gap: 8 }}>
-                    <Tag text='14/14' />
-                    <Tag text='14/14' />
-                </View>
-                <ThemedText type='subtitle'>$6.85</ThemedText>
+                <ScrollView
+                    contentContainerStyle={{
+                        flexDirection: 'row',
+                        gap: 8,
+                    }}
+                    style={{
+                        marginRight: 8,
+                    }}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
+                    {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                    ))}
+                </ScrollView>
+                <ThemedText type='subtitle'>${price}</ThemedText>
             </View>
         </ThemedView>
     );
@@ -56,11 +95,11 @@ export default GameCard;
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 16,
-        paddingHorizontal: 20,
+        padding: 16,
         borderRadius: 8,
         borderWidth: 1,
-        gap: 8,
+        gap: 16,
+        margin: 8,
     },
     title: {
         textTransform: 'capitalize',
@@ -78,7 +117,7 @@ const styles = StyleSheet.create({
     },
     footer: {
         borderTopWidth: 1,
-        paddingTop: 8,
+        paddingTop: 16,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
