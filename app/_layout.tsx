@@ -11,20 +11,24 @@ export default function RootLayout() {
     return (
         <UserProvider>
             <SafeAreaProvider>
-            <Stack
-                screenOptions={{
-                    headerStyle: { backgroundColor: theme.navBar },
-                    headerTintColor: theme.textPrimary,
-                }}
-            >
-                <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-                <Stack.Screen
-                    name='(dashboard)'
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen name='index' options={{ title: 'Welcome' }} />
-            </Stack>
+                <Stack
+                    screenOptions={{
+                        headerStyle: { backgroundColor: theme.navBar },
+                        headerTintColor: theme.textPrimary,
+                    }}
+                >
+                    <Stack.Screen
+                        name='(auth)'
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name='(dashboard)'
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen name='index' options={{ title: 'Welcome' }} />
+                </Stack>
             </SafeAreaProvider>
         </UserProvider>
     );
 }
+

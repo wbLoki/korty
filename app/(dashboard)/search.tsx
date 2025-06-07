@@ -9,17 +9,48 @@ import ThemedTextInput from '@/components/ui/ThemedTextInput';
 import { t } from '@/i18n/i18n';
 import { GameCardProps } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StatusBar, StyleSheet } from 'react-native';
 
 export default function Home() {
     const games: GameCardProps[] = [
-        { id: '1', title: 'test 1' },
-        { id: '2', title: 'test 2' },
-        { id: '3', title: 'test 3' },
+        {
+            id: '1',
+            title: 'Settlers of Catan Night',
+            date: new Date('2025-06-10T19:00:00'),
+            image: null,
+            desc: 'Join us for a competitive evening of Settlers of Catan!',
+            tags: ['Strategy', 'Board Game', 'Intermediate'],
+            price: 5,
+            currentPlayer: 3,
+            maxPlayer: 4,
+        },
+        {
+            id: '2',
+            title: 'Casual Uno + Snacks',
+            date: new Date('2025-06-11T17:30:00'),
+            image: null,
+            desc: 'Relax with a few rounds of Uno and some shared snacks.',
+            tags: ['Casual', 'Card Game', 'Snacks'],
+            price: 0,
+            currentPlayer: 2,
+            maxPlayer: 6,
+        },
+        {
+            id: '3',
+            title: 'D&D One-Shot Adventure',
+            date: new Date('2025-06-14T13:00:00'),
+            image: null,
+            desc: 'Roleplay and roll the dice in a beginner-friendly D&D session.',
+            tags: ['Roleplaying', 'Fantasy', 'D&D'],
+            price: 10,
+            currentPlayer: 5,
+            maxPlayer: 5,
+        },
     ];
+
     return (
-        <ThemedView safe style={styles.container}>
-            <ThemedView style={styles.header}>
+        <ThemedView style={styles.container}>
+            <ThemedView safe style={styles.header}>
                 <ThemedView style={styles.topHeader}>
                     <ThemedView style={styles.searchInput}>
                         <ThemedView style={styles.searchIcon}>
@@ -55,14 +86,9 @@ export default function Home() {
                 ListEmptyComponent={() => (
                     <ThemedText>{t('search.noGames')}</ThemedText>
                 )}
-                style={{
-                    width: '100%',
-                    paddingHorizontal: 8,
-                    paddingVertical: 16,
-                    flex: 1,
-                    minHeight: '100%',
-                }}
-                contentContainerStyle={{ gap: 12 }}
+                showsVerticalScrollIndicator={false}
+                snapToAlignment='start'
+                decelerationRate={'normal'}
             />
         </ThemedView>
     );
@@ -71,6 +97,7 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: StatusBar.currentHeight || 0,
     },
     header: {
         borderBottomWidth: 1,
