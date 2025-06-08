@@ -2,19 +2,22 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 import { getRelativeTime } from '@/lib/timeAgo';
 import { MessageProps } from '@/types';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import ThemedText from './ui/ThemedText';
 
 const Message = (props: MessageProps) => {
     const imagebg = useThemeColor('background');
     const backgroundColor = useThemeColor('surface');
     const color = useThemeColor('textSecondary');
-    const { name, avatar, date, lastMessage, unread } = props;
+    const { id, name, avatar, date, lastMessage, unread } = props;
     const timeAgo = getRelativeTime(new Date(date));
 
+    const router = useRouter();
+
     return (
-        <View style={[styles.container, { backgroundColor }]}>
+        <Pressable onPress={() => router.push(`/messages/${id}`)} style={[styles.container, { backgroundColor }]}>
             <View
                 style={{ flexShrink: 0, aspectRatio: 1, paddingVertical: 12 }}
             >
@@ -73,7 +76,7 @@ const Message = (props: MessageProps) => {
                     </View>
                 </View>
             </View>
-        </View>
+        </Pressable>
     );
 };
 
