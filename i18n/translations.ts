@@ -1,5 +1,4 @@
-import { DotNestedKeys } from "@/types/Translations";
-
+import { DotNestedKeys } from '@/types/Translations';
 
 export const translations = {
     en: {
@@ -8,6 +7,9 @@ export const translations = {
             title: 'welcome to search page',
             subtitle: 'You can search for games here.',
             noGames: 'No games found',
+        },
+        chat: {
+            noChats: 'No conversations yet. Start a new one!',
         },
     },
     fr: {
