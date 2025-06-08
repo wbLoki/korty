@@ -10,3 +10,12 @@ export type GameCardProps = {
     maxPlayer: number;
 };
 
+export type MessageProps = {
+    id: string;
+    name: string;
+    message: string;
+    date: Date;
+    image: string;
+    count: number;
+};
+
