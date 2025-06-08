@@ -17,7 +17,6 @@ const DashboardLayout = () => {
                     },
                     tabBarActiveTintColor: active,
                     tabBarInactiveTintColor: inActive,
-                    tabBarLabelPosition: 'beside-icon',
                     tabBarItemStyle: { borderRadius: 20 },
                 }}
             >
@@ -41,6 +40,19 @@ const DashboardLayout = () => {
                         tabBarIcon: ({ focused }) => (
                             <Ionicons
                                 name='search'
+                                size={24}
+                                color={focused ? active : inActive}
+                            />
+                        ),
+                    }}
+                />
+                <Tabs.Screen
+                    name='messages'
+                    options={{
+                        title: 'Messages',
+                        tabBarIcon: ({ focused }) => (
+                            <Ionicons
+                                name='chatbubble-ellipses-outline'
                                 size={24}
                                 color={focused ? active : inActive}
                             />
