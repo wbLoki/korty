@@ -13,7 +13,7 @@ const DashboardLayout = () => {
                     headerShown: false,
                     tabBarStyle: {
                         backgroundColor: useThemeColor('navBar'),
-                        paddingTop: 10,
+                        paddingTop: 4,
                     },
                     tabBarActiveTintColor: active,
                     tabBarInactiveTintColor: inActive,
@@ -78,4 +78,3 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
