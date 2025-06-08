@@ -1,4 +1,5 @@
 import GameCard from './GameCard';
+import Message from './Message';
 import { HapticTab } from './ui/HapticTab';
 import Spacer from './ui/Spacer';
 import ThemedButton from './ui/ThemedButton';
@@ -10,6 +11,7 @@ import ThemedView from './ui/ThemedView';
 export {
     GameCard,
     HapticTab,
+    Message,
     Spacer,
     ThemedButton,
     ThemedCalendar,
