@@ -2,50 +2,55 @@ import { Message, ThemedText, ThemedView } from '@/components';
 import { t } from '@/i18n/i18n';
 import { MessageProps } from '@/types';
 import React from 'react';
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
 const Messages = () => {
     const mockMessages: MessageProps[] = [
         {
             id: '1',
             name: 'Sarah El Amrani',
-            message:
+            lastMessage:
                 'Bonjour, je voulais prendre rendez-vous pour un nettoyage.',
             date: new Date(Date.now() - 3 * 60 * 1000), // 3 minutes ago
-            image: '/avatars/sarah.webp',
-            count: 1,
+            avatar: '/avatars/sarah.webp',
+            unread: 1,
+            isGroup: false,
         },
         {
             id: '2',
             name: 'Mohammed Tazi',
-            message: 'هل تعملون يوم السبت؟',
+            lastMessage: 'هل تعملون يوم السبت؟',
             date: new Date(Date.now() - 15 * 60 * 1000), // 15 minutes ago
-            image: '/avatars/mohammed.webp',
-            count: 2,
+            avatar: '/avatars/mohammed.webp',
+            unread: 2,
+            isGroup: false,
         },
         {
             id: '3',
             name: 'Emma Dubois',
-            message: 'Je suis intéressée par les facettes dentaires.',
+            lastMessage: 'Je suis intéressée par les facettes dentaires.',
             date: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
-            image: '/avatars/emma.webp',
-            count: 0,
+            avatar: '/avatars/emma.webp',
+            unread: 0,
+            isGroup: false,
         },
         {
             id: '4',
             name: 'Omar Bennani',
-            message: 'Do you accept walk-ins or is it appointment only?',
+            lastMessage: 'Do you accept walk-ins or is it appointment only?',
             date: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-            image: '/avatars/omar.webp',
-            count: 4,
+            avatar: '/avatars/omar.webp',
+            unread: 4,
+            isGroup: false,
         },
         {
             id: '5',
             name: 'Layla Haddad',
-            message: 'Merci pour votre aide lors de ma dernière visite!',
+            lastMessage: 'Merci pour votre aide lors de ma dernière visite!',
             date: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
-            image: '/avatars/layla.webp',
-            count: 0,
+            avatar: '/avatars/layla.webp',
+            unread: 0,
+            isGroup: false,
         },
     ];
 
@@ -56,13 +61,12 @@ const Messages = () => {
                 renderItem={({ item }) => <Message {...item} />}
                 keyExtractor={(item) => item.id}
                 ListEmptyComponent={() => (
-                    <ThemedText>{t('search.noGames')}</ThemedText>
+                    <ThemedText>{t('chat.noChats')}</ThemedText>
                 )}
                 showsVerticalScrollIndicator={false}
                 snapToAlignment='start'
                 decelerationRate={'normal'}
             />
-            <Text>Messages</Text>
         </ThemedView>
     );
 };
@@ -76,4 +80,3 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 });
-

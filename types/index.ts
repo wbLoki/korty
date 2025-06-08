@@ -13,9 +13,9 @@ export type GameCardProps = {
 export type MessageProps = {
     id: string;
     name: string;
-    message: string;
+    lastMessage: string;
     date: Date;
-    image: string;
-    count: number;
+    avatar: string;
+    unread: number;
+    isGroup: boolean;
 };
-
