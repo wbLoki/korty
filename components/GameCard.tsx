@@ -11,6 +11,7 @@ const GameCard = (props: GameCardProps) => {
     const backgroundColor = useThemeColor('surface');
     const imagebg = useThemeColor('background');
     const borderColor = useThemeColor('border');
+    const borderLeftColor = useThemeColor('accent');
     const { title, date, image, desc, tags, price, currentPlayer, maxPlayer } =
         props;
     const time = date.toLocaleTimeString([], {
@@ -20,7 +21,10 @@ const GameCard = (props: GameCardProps) => {
 
     return (
         <ThemedView
-            style={[styles.container, { backgroundColor, borderColor }]}
+            style={[
+                styles.container,
+                { backgroundColor, borderColor, borderLeftColor },
+            ]}
         >
             <View>
                 <ThemedText type='subtitle' style={styles.title}>
@@ -54,9 +58,12 @@ const GameCard = (props: GameCardProps) => {
                     <View style={{ flexShrink: 1, aspectRatio: 1 }}>
                         <Image
                             style={[{ backgroundColor: imagebg }, styles.image]}
-                            source={image}
+                            source={
+                                image ||
+                                'https://sp-ao.shortpixel.ai/client/q_lossless,ret_img,w_250/https://miamistonesource.com/wp-content/uploads/2018/05/no-avatar-25359d55aa3c93ab3466622fd2ce712d1.jpg'
+                            }
                             placeholder={'user image'}
-                            contentFit='contain'
+                            contentFit='cover'
                         />
                     </View>
                     <ThemedText
@@ -98,8 +105,9 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 8,
         borderWidth: 1,
+        borderLeftWidth: 4,
         gap: 16,
-        margin: 8,
+        marginVertical: 8,
     },
     title: {
         textTransform: 'capitalize',
@@ -123,4 +131,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 });
-
