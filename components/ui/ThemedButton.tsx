@@ -23,6 +23,7 @@ interface Props {
     fullWidth?: boolean;
     children?: React.ReactNode;
     icon?: IconName;
+    iconSize?: number;
     iconColor?: string;
 }
 
@@ -40,10 +41,11 @@ const ThemedButton: React.FC<Props> = ({
     fullWidth,
     children,
     icon,
-    iconColor = 'white',
+    iconSize = 24,
+    iconColor,
 }) => {
     const backgroundColor = useThemeColor(VARIANT_COLOR_MAP[variant]);
-    const textColor = useThemeColor('background');
+    const color = useThemeColor('textPrimary');
 
     return (
         <TouchableOpacity
@@ -56,10 +58,18 @@ const ThemedButton: React.FC<Props> = ({
             activeOpacity={0.8}
             accessibilityRole='button'
         >
-            {text && <Text style={[styles.text, { color: textColor }, textStyle]}>
-                {children || text}
-            </Text>}
-            {icon && <Ionicons color={iconColor} name={icon} size={24} />}
+            {text && (
+                <Text style={[styles.text, { color }, textStyle]}>
+                    {children || text}
+                </Text>
+            )}
+            {icon && (
+                <Ionicons
+                    color={iconColor || color}
+                    name={icon}
+                    size={iconSize}
+                />
+            )}
         </TouchableOpacity>
     );
 };
