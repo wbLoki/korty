@@ -3,6 +3,7 @@ import { HapticTab } from './ui/HapticTab';
 import Spacer from './ui/Spacer';
 import ThemedButton from './ui/ThemedButton';
 import ThemedCalendar from './ui/ThemedCalendar';
+import ThemedDateTime from './ui/ThemedDateTime';
 import ThemedIcon from './ui/ThemedIcon';
 import ThemedLoader from './ui/ThemedLoader';
 import ThemedText from './ui/ThemedText';
@@ -14,6 +15,7 @@ export {
     Spacer,
     ThemedButton,
     ThemedCalendar,
+    ThemedDateTime,
     ThemedIcon,
     ThemedLoader,
     ThemedText,
