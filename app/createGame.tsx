@@ -1,7 +1,11 @@
-import { ThemedText, ThemedView } from '@/components';
+import {
+    ThemedButton,
+    ThemedDateTime,
+    ThemedText,
+    ThemedView,
+} from '@/components';
 import ThemedTextInput from '@/components/ui/ThemedTextInput';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -13,32 +17,50 @@ const CreateGame = () => {
                 <ThemedText type='subtitle'>Game Title</ThemedText>
                 <ThemedTextInput
                     placeholder='e.g. Evening Kickabout'
+                    returnKeyType='done'
                     style={[styles.input, { borderColor }]}
                 />
             </ThemedView>
             <ThemedView
+                style={{ flexDirection: 'row', gap: 16, alignItems: 'center' }}
+            >
+                <ThemedText type='subtitle'>Time</ThemedText>
+                <ThemedDateTime mode='datetime' />
+            </ThemedView>
+            <ThemedView>
+                <ThemedText type='subtitle'>Location</ThemedText>
+                <ThemedTextInput
+                    placeholder='search for a location'
+                    autoCapitalize='words'
+                    returnKeyType='next'
+                    style={[styles.input, { borderColor }]}
+                />
+            </ThemedView>
+            <ThemedView>
+                <ThemedText type='subtitle'>No. of players</ThemedText>
+                <ThemedTextInput
+                    placeholder='e.g. 10 players'
+                    keyboardType='numeric'
+                    autoCapitalize='words'
+                    returnKeyType='done'
+                    style={[styles.input, { borderColor }]}
+                />
+            </ThemedView>
+            <ThemedView
+                safe
                 style={{
-                    flexDirection: 'row',
-                    gap: 16,
-                    width: '100%',
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    paddingHorizontal: 16,
                 }}
             >
-                <ThemedView style={{ flex: 1 }}>
-                    <ThemedText type='subtitle'>Date</ThemedText>
-                    <ThemedTextInput
-                        placeholder='e.g. 2023-10-01'
-                        style={[styles.input, { borderColor }]}
-                    />
-                </ThemedView>
-                <ThemedView style={{ flex: 1 }}>
-                    <ThemedText type='subtitle'>Time</ThemedText>
-                    <RNDateTimePicker
-                        value={new Date()}
-                        mode='time'
-                        style={styles.dateTimePicker}
-                        design='material'
-                    />
-                </ThemedView>
+                <ThemedButton
+                    text='Create Game'
+                    variant='primary'
+                    onPress={() => {
+                        // Handle game creation logic here
+                    }}
+                />
             </ThemedView>
         </ThemedView>
     );
@@ -49,10 +71,10 @@ export default CreateGame;
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16, gap: 20 },
     input: {
-        height: 40,
         borderWidth: 1,
-        paddingHorizontal: 8,
+        padding: 12,
         marginTop: 8,
+        fontSize: 16,
     },
     dateTimePicker: {
         flex: 1,
@@ -62,4 +84,3 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
 });
-
